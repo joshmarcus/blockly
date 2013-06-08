@@ -5,6 +5,8 @@
   <script type="text/javascript" src="../../blockly_compressed.js"></script>
   <script type="text/javascript" src="../../en_compressed.js"></script>
   <script type="text/javascript" src="../../javascript_compressed.js"></script>
+  <script type="text/javascript" src="../../generators/javascript/mapalgebra.js"></script>
+  <script type="text/javascript" src="../../language/common/mapalgebra.js"></script>
   <style>
     body {
       background-color: white;
@@ -32,6 +34,35 @@
   <div id="blocklyDiv" style="height: 480px; width: 600px;"></div>
 
   <xml id="toolbox" style="display: none">
+    <category name="Data">
+      <category name="Raster">
+      <block type="mapalgebra_load_raster">
+        <title name="RASTERNAME">r1</title>
+      </block>
+      <block type="mapalgebra_load_raster">
+        <title name="RASTERNAME">r2</title>
+      </block>
+      <block type="mapalgebra_load_raster">
+        <title name="RASTERNAME">r3</title>
+      </block>
+      </category>
+      <category name="Vector"></category>
+      <category name="Tools"></category>
+    </category>
+
+    <category name="Map Algebra">
+    <category name="Local Operations">
+    <block type="mapalgebra_local_calculation"></block>
+    <block type="mapalgebra_local_minimum"></block>
+    <block type="mapalgebra_renderpng"></block>
+      </category>
+      <category name="Focal Operations"></category>
+      <category name="Zonal Operations"></category>
+    </category>
+    <category name="Output">
+      <block type="mapalgebra_renderpng">
+    </category>
+
     <category name="Control">
       <block type="controls_if"></block>
       <block type="controls_repeat"></block>
