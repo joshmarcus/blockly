@@ -4,6 +4,7 @@
   <title>Blockly Demo: Toolbox</title>
   <script type="text/javascript" src="../../blockly_compressed.js"></script>
   <script type="text/javascript" src="../../en_compressed.js"></script>
+  <script type="text/javascript" src="../../language/common/mapalgebra.js"></script>
   <style>
     body {
       background-color: white;
@@ -22,10 +23,43 @@
   <p>This is a demo of a complex category structure for the toolbox.</p>
 
   <p>&rarr; More info on <a href="http://code.google.com/p/blockly/wiki/Toolbox">Defining the Toolbox</a>...</p>
-
+  
   <div id="blocklyDiv" style="height: 600px; width: 800px;"></div>
 
   <xml id="toolbox" style="display: none">
+    <category name="Data">
+      <category name="Raster">
+      <block type="mapalgebra_load_raster">
+        <title name="rasterName">r1</title>
+      </block>
+      <block type="mapalgebra_load_raster">
+        <title name="rasterName">r2</title>
+      </block>
+      <block type="mapalgebra_load_raster">
+        <title name="rasterName">r3</title>
+      </block>
+      </category>
+      <category name="Vector"></category>
+      <category name="Tools"></category>
+    </category>
+
+    <category name="Map Algebra">
+    <category name="Local Operations">
+    <block type="mapalgebra_local_calculation"></block>
+    <block type="mapalgebra_local_minimum"></block>
+    <block type="mapalgebra_renderpng"></block>
+      </category>
+      <category name="Focal Operations"></category>
+      <category name="Zonal Operations"></category>
+    </category>
+    <category name="Output">
+      <block type="mapalgebra_renderpng">
+    </category> 
+    <category name="Variables" custom="VARIABLE"></category>
+    <category name="Examples">
+    </category>
+    <category name="Advanced">
+
     <category name="Control">
       <category name="If">
         <block type="controls_if"></block>
@@ -123,7 +157,6 @@
       <block type="lists_getIndex"></block>
       <block type="lists_setIndex"></block>
     </category>
-    <category name="Variables" custom="VARIABLE"></category>
     <category name="Procedures" custom="PROCEDURE"></category>
     <category name="Library">
       <category name="Randomize">
@@ -318,6 +351,7 @@
           </next>
         </block>
       </category>
+    </category>
     </category>
   </xml>
 
