@@ -1,0 +1,157 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Blockly Demo: Generating JavaScript</title>
+  <script type="text/javascript" src="../../blockly_compressed.js"></script>
+  <script type="text/javascript" src="../../en_compressed.js"></script>
+  <script type="text/javascript" src="../../javascript_compressed.js"></script>
+  <script type="text/javascript" src="../../generators/javascript/mapalgebra.js"></script>
+  <script type="text/javascript" src="../../language/common/mapalgebra.js"></script>
+  <link rel="stylesheet" type="text/css" href="style.css"> 
+  <style>
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+    <style>
+      html, body {
+        background-color: #fff;
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+      }
+      .blocklySvg {
+        height: 100%;
+        width: 100%;
+      }
+    </style>
+
+  </style>
+</head>
+<body onload="init()" >
+ <p>
+    <button onclick="showCode()">Show JavaScript</button>
+    <button onclick="runCode()">Run JavaScript</button>
+    <button onclick="showXML()">Show XML</button>
+  </p>
+  <div id="blocklyDiv"></div>
+
+<!--  <div> 
+  <button onclick="showCode()" title="See generated JavaScript code." ><img src="../../media/1x1.gif" class="code"></button>
+  <button onclick="showXML()" title="See generated XML." ><img src="../../media/1x1.gif" class="code"></button>
+<button id="linkButton" title="Save and link to blocks." onclick="BlocklyStorage.link();"> <img src="../../media/1x1.gif" class="link"></button>
+  </div> -->
+  <xml id="toolbox" style="display: none">
+    <category name="Data">
+      <category name="Raster">
+      <block type="mapalgebra_load_raster">
+        <title name="RASTERNAME">r1</title>
+      </block>
+      <block type="mapalgebra_load_raster">
+        <title name="RASTERNAME">r2</title>
+      </block>
+      <block type="mapalgebra_load_raster">
+        <title name="RASTERNAME">r3</title>
+      </block>
+      </category>
+      <category name="Vector"></category>
+      <category name="Tools"></category>
+    </category>
+
+    <category name="Map Algebra">
+    <category name="Local Operations">
+    <block type="mapalgebra_local_calculation"></block>
+    <block type="mapalgebra_local_minimum"></block>
+    <block type="mapalgebra_renderpng"></block>
+      </category>
+      <category name="Focal Operations"></category>
+      <category name="Zonal Operations"></category>
+    </category>
+    <category name="Output">
+      <block type="mapalgebra_renderpng">
+    </category>
+
+    <category name="Control">
+      <block type="controls_if"></block>
+      <block type="controls_repeat"></block>
+      <block type="controls_whileUntil"></block>
+    </category>
+    <category name="Logic">
+      <block type="logic_compare"></block>
+      <block type="logic_operation"></block>
+      <block type="logic_negate"></block>
+      <block type="logic_boolean"></block>
+    </category>
+    <category name="Math">
+      <block type="math_number"></block>
+      <block type="math_arithmetic"></block>
+      <block type="math_single"></block>
+    </category>
+    <category name="Text">
+      <block type="text"></block>
+      <block type="text_length"></block>
+      <block type="text_print"></block>
+    </category>
+    <category name="Library">
+  <block type="mapalgebra_renderpng" inline="false" x="-12" y="79">
+    <title name="numBreaks">10</title>
+    <value name="raster">
+      <block type="mapalgebra_local_calculation" inline="false">
+        <value name="A">
+          <block type="mapalgebra_load_raster">
+            <title name="RASTERNAME">r1</title>
+          </block>
+        </value>
+        <value name="B">
+          <block type="mapalgebra_load_raster">
+            <title name="RASTERNAME">r2</title>
+          </block>
+        </value>
+      </block>
+    </value>
+  </block>
+    </category>
+  </xml>
+  
+
+  <script>
+    function init() {
+      //Blockly.inject(document.getElementById('blocklyDiv'),
+      Blockly.inject(document.body,
+        {path: '../../', rtl: true, toolbox: document.getElementById('toolbox')});
+      window.parent.blocklyLoaded(Blockly);
+    }
+    
+    function showCode() {
+      // Generate JavaScript code and display it.
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.Generator.workspaceToCode('JavaScript');
+      alert(code);
+    }
+
+/*    function showXML() {
+     // var xmlTextarea = document.getElementById('textarea_xml');
+      var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+      var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+      alert(xmlText);
+      //xmlTextarea.value = xmlText;
+      //xmlTextarea.focus();
+    }
+    function runCode() {
+      // Generate JavaScript code and run it.
+      window.LoopTrap = 1000;
+      Blockly.JavaScript.INFINITE_LOOP_TRAP =
+          'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+      var code = Blockly.Generator.workspaceToCode('JavaScript');
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      try {
+        eval(code);
+      } catch (e) {
+        alert(e);
+      }
+    }
+*/
+  </script>
+
+</body>
+</html>

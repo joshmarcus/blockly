@@ -1,0 +1,96 @@
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Blockly Demo: Iframe Blockly</title>
+  <style>
+    body {
+      background-color: white;
+      font-family: sans-serif;
+    }
+    h1 {
+      font-weight: normal;
+      font-size: 140%;
+    }
+    iframe {
+      width: 100%;
+      height: 100%;
+      border-style: solid;
+      border-color: #ddd;
+      border-width: 0 1px 1px 0;
+    }
+  </style>
+  <link rel="stylesheet" type="text/css" href="style.css">
+
+  <script>
+    function showCode() {
+      // Generate JavaScript code and display it.
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      var code = Blockly.Generator.workspaceToCode('JavaScript');
+      alert(code);
+    }
+
+    function showXML() {
+     // var xmlTextarea = document.getElementById('textarea_xml');
+      var xmlDom = Blockly.Xml.workspaceToDom(Blockly.mainWorkspace);
+      var xmlText = Blockly.Xml.domToPrettyText(xmlDom);
+      alert(xmlText);
+      //xmlTextarea.value = xmlText;
+      //xmlTextarea.focus();
+    }
+
+    function runCode() {
+      // Generate JavaScript code and run it.
+      window.LoopTrap = 1000;
+      Blockly.JavaScript.INFINITE_LOOP_TRAP =
+          'if (--window.LoopTrap == 0) throw "Infinite loop.";\n';
+      var code = Blockly.Generator.workspaceToCode('JavaScript');
+      Blockly.JavaScript.INFINITE_LOOP_TRAP = null;
+      try {
+        eval(code);
+      } catch (e) {
+        alert(e);
+      }
+    }
+
+
+    function render_png(raster) {
+      var img = document.getElementById("img");
+      img.src = "http://192.168.16.41:8888/hello/sexp?sexp=(geotrellis.io.RenderPng(geotrellis.io.LoadRaster%20%22" + raster + "%22%20null)(gtexample.GetColorBreaks(geotrellis.statistics.op.stat.GetHistogramMap(geotrellis.io.LoadRaster%20%22SBN_car_share%22%20null)))(geotrellis.statistics.op.stat.GetHistogramMap(geotrellis.io.LoadRaster%20%22SBN_car_share%22%20null))0)";
+     }
+
+    function load_raster(str) {
+      return str;
+    }
+  </script>
+</head>
+<body>
+  <table width="100%" height="100%">
+    <tr>
+      <td>
+        <h1><a href="http://blockly.googlecode.com/">Aquaduct Blockly Demo</a></h1>
+      </td>
+    </tr>
+    <tr>
+      <td height="90%">
+        <script>
+          function blocklyLoaded(blockly) {
+            // Called once Blockly is fully loaded.
+            window.Blockly = blockly;
+          }
+        </script>
+ <p>
+    <button onclick="showCode()">Show JavaScript</button>
+    <button onclick="runCode()">Run JavaScript</button>
+    <button onclick="showXML()">Show XML</button>
+  </p>
+
+        <iframe src="frame2.html"></iframe>
+      </td>
+      <td width="400" >
+        <img id="img" width="400" src="http://192.168.16.41:8888/hello/sexp?sexp=(geotrellis.io.RenderPng(geotrellis.io.LoadRaster%20%22den_grad%22%20null)(gtexample.GetColorBreaks(geotrellis.statistics.op.stat.GetHistogramMap(geotrellis.io.LoadRaster%20%22SBN_car_share%22%20null)))(geotrellis.statistics.op.stat.GetHistogramMap(geotrellis.io.LoadRaster%20%22SBN_car_share%22%20null))0)" />
+      </td>
+    </tr>
+  </table>
+
+</body>
+</html>
